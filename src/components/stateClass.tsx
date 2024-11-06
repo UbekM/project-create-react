@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
+import React from "react";
 
-const StateComp = () => {
-    const [stateClass, setStateClass] = useState(0);
-    const [userData] = useState({
+// Define a type for the userData object
+interface UserData {
+    firstname: string;
+    lastname: string;
+    age: string;
+    nationality: string;
+    phoneNumber: string;
+    email: string;
+    password: string;
+}
+
+const StateComp: React.FC = () => {
+    const [stateClass, setStateClass] = useState<boolean>(false); // Use `number` instead of `Number`
+    const [userData, setUserData] = useState<UserData>({
         firstname: "",
         lastname: "",
         age: "",
@@ -12,11 +24,16 @@ const StateComp = () => {
         password: "",
     });
 
-    const handleChange = () => {
-        // Logic to monitor user inputs
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
+        setUserData(prevState => ({
+            ...prevState,
+            [name]: value,
+        }));
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
         // Logic to submit form as a text file sent to email
     };
 
@@ -30,27 +47,6 @@ const StateComp = () => {
 
     return (
         <div className="flex flex-col items-center p-6 space-y-6 bg-gray-100 min-h-screen">
-            {/* <h1 className="text-2xl font-bold text-gray-800">
-                Welcome to our Simple E-commerce site built with React
-            </h1>
-            
-            <img
-                src="https://ng.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/72/0127612/1.jpg"
-                alt="Product"
-                className="rounded-lg shadow-lg"
-            />
-
-            <p className="text-lg font-semibold">State: {stateClass}</p>
-            
-            <div className="space-x-4">
-                <button onClick={increment} className="bg-green-500 px-6 py-2 rounded-lg text-white hover:bg-green-600 transition">
-                    Add
-                </button>
-                <button onClick={decrement} className="bg-red-500 px-6 py-2 rounded-lg text-white hover:bg-red-600 transition">
-                    Remove
-                </button>
-            </div> */}
-
             <form onSubmit={handleSubmit} className="w-full max-w-md space-y-4">
                 <div>
                     <label className="block font-medium">First Name</label>
@@ -63,7 +59,6 @@ const StateComp = () => {
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-
                 <div>
                     <label className="block font-medium">Last Name</label>
                     <input
@@ -75,7 +70,6 @@ const StateComp = () => {
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-
                 <div>
                     <label className="block font-medium">Age</label>
                     <input
@@ -87,7 +81,6 @@ const StateComp = () => {
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-
                 <div>
                     <label className="block font-medium">Phone Number</label>
                     <input
@@ -99,7 +92,6 @@ const StateComp = () => {
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-
                 <div>
                     <label className="block font-medium">Nationality</label>
                     <select
@@ -113,7 +105,6 @@ const StateComp = () => {
                         <option value="USA">USA</option>
                     </select>
                 </div>
-
                 <div>
                     <label className="block font-medium">Email</label>
                     <input
@@ -125,7 +116,6 @@ const StateComp = () => {
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-
                 <div>
                     <label className="block font-medium">Password</label>
                     <input
@@ -137,7 +127,6 @@ const StateComp = () => {
                         className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
                 </div>
-
                 <button
                     type="submit"
                     className="w-full py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
