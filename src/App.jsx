@@ -10,6 +10,9 @@ import ReactComp from "./components/firstReactComp";
 import Navbar from "./components/navbar";
 import StateComp from './components/stateClass';
 import { RouterProvider, createBrowserRouter} from "react-router-dom";
+import CardDetail from "./components/useParamsClass/cardDetails";
+import HomePage from "./components/useParamsClass/homeCard";
+import { UseParamsClass } from "./components/useParams";
 
 const router = createBrowserRouter(
   [
@@ -18,6 +21,7 @@ const router = createBrowserRouter(
       <>
       <Navbar/>
       <ReactComp/>
+      <HomePage/>
       </>
       )
     },
@@ -25,11 +29,13 @@ const router = createBrowserRouter(
       path: "signup",
       element: <div><StateComp/></div>,
     },
+    {
+      path: "cart/shoe/:id",
+      element: <div><CardDetail/></div>,
+    },
   ]
 )
 function App() {
-  //&&
-
   return (
     <>
     <RouterProvider router={router}/>

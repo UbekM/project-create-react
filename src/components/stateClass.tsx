@@ -13,7 +13,7 @@ interface UserData {
 }
 
 const StateComp: React.FC = () => {
-    const [stateClass, setStateClass] = useState<boolean>(false); // Use `number` instead of `Number`
+    const [stateClass, setStateClass] = useState<number>(0); // Use `number` instead of `Number`
     const [userData, setUserData] = useState<UserData>({
         firstname: "",
         lastname: "",
