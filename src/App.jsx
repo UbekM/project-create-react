@@ -13,7 +13,7 @@ import { RouterProvider, createBrowserRouter} from "react-router-dom";
 import CardDetail from "./components/useParamsClass/cardDetails";
 import HomePage from "./components/useParamsClass/homeCard";
 import { UseParamsClass } from "./components/useParams";
-
+import {UseContextClass} from "./components/context/useContextClass";
 const router = createBrowserRouter(
   [
     {
@@ -38,8 +38,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
+    <UseContextClass>
     <RouterProvider router={router}/>
-
+    </UseContextClass>
      {/* <Navbar/>
     <Router>
       <Routes> */}
