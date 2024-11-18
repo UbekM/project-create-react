@@ -12,8 +12,12 @@ import StateComp from './components/stateClass';
 import { RouterProvider, createBrowserRouter} from "react-router-dom";
 import CardDetail from "./components/useParamsClass/cardDetails";
 import HomePage from "./components/useParamsClass/homeCard";
-import { UseParamsClass } from "./components/useParams";
+//import { UseParamsClass } from "./components/useParams";
 import {UseContextClass} from "./components/context/useContextClass";
+import SignIn from "./components/firebase/signin";
+import SignUp from "./components/firebase/signup";
+import AuthProvider from "./components/firebase/AuthContext";
+
 const router = createBrowserRouter(
   [
     {
@@ -26,8 +30,15 @@ const router = createBrowserRouter(
       )
     },
     {
-      path: "signup",
+      path: "state",
       element: <div><StateComp/></div>,
+    },
+    {
+      path: "signin",
+      element: <div><SignIn/></div>,
+    },{
+      path: "signup",
+      element: <div><SignUp/></div>,
     },
     {
       path: "cart/shoe/:id",
@@ -38,9 +49,11 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
+    <AuthProvider>
     <UseContextClass>
     <RouterProvider router={router}/>
     </UseContextClass>
+    </AuthProvider>
      {/* <Navbar/>
     <Router>
       <Routes> */}
