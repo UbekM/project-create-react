@@ -16,7 +16,7 @@ import HomePage from "./components/useParamsClass/homeCard";
 import {UseContextClass} from "./components/context/useContextClass";
 import SignIn from "./components/firebase/signin";
 import SignUp from "./components/firebase/signup";
-import AuthProvider from "./components/firebase/AuthContext";
+import {AuthProvider} from "./components/firebase/AuthContext";
 
 const router = createBrowserRouter(
   [
